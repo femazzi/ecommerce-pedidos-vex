@@ -75,22 +75,25 @@ Desenvolver um **sistema completo de gestão de pedidos para um e-commerce**, co
 
 ```text
 ecommerce-pedidos-vex/
-├── src/
-│   ├── main/
-│   │   └── java/
-│   │       └── com/vex/ecommerce/
-│   │           ├── modelo/
-│   │           ├── servico/
-│   │           ├── repositorio/
-│   │           ├── excecao/
-│   │           └── util/
-│   └── test/
-│       └── java/
-│           └── com/vex/ecommerce/
-├── pom.xml
-├── README.md
-├── LICENSE.txt
-└── .gitignore
+├├───backend
+│   ├───.mvn
+│   ├───src/main/java/com/vex/ecommerce
+│   │   ├───excecao
+│   │   ├───modelo
+│   │   ├───repositorio
+│   │   ├───servico
+│   │   └───util
+│   └───test/java/com/vex
+│   │   └───ecommerce
+│   └───target/classes/com/vex/ecommerce
+│   │   ├───excecao
+│   │   ├───modelo
+│   │   ├───repositorio
+│   │   ├───servico
+│   │   └───util
+│   └───test-classes/com/vex
+│       └───ecommerce
+└───frontend
 ```
 
 ---
