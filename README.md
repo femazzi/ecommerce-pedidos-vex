@@ -178,9 +178,9 @@ cd ecommerce-pedidos-vex
 
 | Integrante | Módulo | Branch |
 |---|---|---|
-| Eduardo Duran | Produto | `feature/cadastro-produto` |
+| Eduardo Duran | Produtos | `feature/produtos` |
 | Eduardo Duran | Pedidos | `feature/pedidos` |
-| Felipe Mazzi | Cliente | `feature/cadastro-cliente` |
+| Felipe Mazzi | Clientes | `feature/clientes` |
 | Felipe Mazzi | Pagamentos | `feature/pagamentos` |
 
 ### Responsabilidades
