@@ -179,12 +179,14 @@ cd ecommerce-pedidos-vex
 | Integrante | Módulo | Branch |
 |---|---|---|
 | Eduardo Duran | Produto | `feature/cadastro-produto` |
+| Eduardo Duran | Pedidos | `feature/pedidos` |
 | Felipe Mazzi | Cliente | `feature/cadastro-cliente` |
+| Felipe Mazzi | Pagamentos | `feature/pagamentos` |
 
 ### Responsabilidades
 
 **Eduardo Duran**
-- Responsável pelo módulo de Produto.
+- Responsável pelo módulo de Produto. 
 - Criar o esqueleto da classe `Produto`.
 - Preparar a estrutura de testes do módulo.
 - Manter a documentação relacionada ao módulo de Produto.
@@ -217,26 +219,11 @@ Os commits seguirão o padrão:
 
 `tipo: descrição da alteração`
 
-Exemplos:
-
-- `feat: cria esqueleto da classe Produto`
-- `feat: cria esqueleto da classe Cliente`
-- `test: prepara estrutura de testes do produto`
-- `docs: atualiza documentação do projeto`
-- `fix: corrige estrutura da classe Produto`
-
 ### Convenção de Branches
 
 As branches seguirão o padrão:
 
 `feature/nome-do-modulo`
-
-Exemplos:
-
-- `feature/cadastro-produto`
-- `feature/cadastro-cliente`
-- `feature/cadastro-pedido`
-- `feature/cadastro-pagamento`
 
 ---
 
