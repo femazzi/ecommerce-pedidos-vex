@@ -174,6 +174,72 @@ cd ecommerce-pedidos-vex
 
 ---
 
+## Divisão do Trabalho
+
+| Integrante | Módulo | Branch |
+|---|---|---|
+| Eduardo Duran | Produto | `feature/cadastro-produto` |
+| Felipe Mazzi | Cliente | `feature/cadastro-cliente` |
+
+### Responsabilidades
+
+**Eduardo Duran**
+- Responsável pelo módulo de Produto.
+- Criar o esqueleto da classe `Produto`.
+- Preparar a estrutura de testes do módulo.
+- Manter a documentação relacionada ao módulo de Produto.
+
+**Felipe Mazzi**
+- Responsável pelo módulo de Cliente.
+- Criar o esqueleto da classe `Cliente`.
+- Preparar a estrutura de testes do módulo.
+- Manter a documentação relacionada ao módulo de Cliente.
+
+---
+
+## Fluxo de Trabalho
+
+Para manter o projeto organizado, a equipe seguirá o fluxo:
+
+1. A branch `main` representa a versão principal e estável do projeto.
+2. Cada integrante deve trabalhar em sua própria branch.
+3. As branches de funcionalidades seguirão o padrão:
+   `feature/nome-do-modulo`
+4. Nenhum integrante deve realizar commits diretamente na `main`.
+5. As alterações devem ser enviadas por meio de um Pull Request.
+6. Todo Pull Request deverá ser revisado e aprovado antes do merge.
+7. Os commits devem ser pequenos e representar uma única alteração.
+8. Após o merge, a branch da funcionalidade poderá ser excluída.
+
+### Padrão de Commits
+
+Os commits seguirão o padrão:
+
+`tipo: descrição da alteração`
+
+Exemplos:
+
+- `feat: cria esqueleto da classe Produto`
+- `feat: cria esqueleto da classe Cliente`
+- `test: prepara estrutura de testes do produto`
+- `docs: atualiza documentação do projeto`
+- `fix: corrige estrutura da classe Produto`
+
+### Convenção de Branches
+
+As branches seguirão o padrão:
+
+`feature/nome-do-modulo`
+
+Exemplos:
+
+- `feature/cadastro-produto`
+- `feature/cadastro-cliente`
+- `feature/cadastro-pedido`
+- `feature/cadastro-pagamento`
+
+---
+
 ## Licença MIT
 
 Projeto **acadêmico**, desenvolvido para fins educacionais na **Faculdade de Tecnologia SENAI "Antonio Adolpho Lobbe"**.
