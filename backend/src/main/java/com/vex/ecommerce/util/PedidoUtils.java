@@ -1,13 +1,8 @@
 package com.vex.ecommerce.util;
 
-
 import java.time.Year;
 import java.util.Random;
 
-/**
- * Classe utilitária responsável pelos cálculos e formatações
- * utilizados no sistema de pedidos.
- */
 public final class PedidoUtils {
 
     // =========================
@@ -26,6 +21,9 @@ public final class PedidoUtils {
     private static final double TAXA_DESCONTO = 0.10;
     private static final double TETO_DESCONTO = 100.00;
 
+    private PedidoUtils() {
+    }
+
     /**
      * Gera um número de pedido no formato PED-AAAA-NNNNN.
      *
@@ -36,5 +34,22 @@ public final class PedidoUtils {
         int numeroAleatorio = RANDOM.nextInt(LIMITE_NUMERO_PEDIDO);
 
         return String.format("%s-%04d-%05d", PREFIXO_PEDIDO, anoAtual, numeroAleatorio);
+    }
+
+    /**
+     * Calcula o subtotal do pedido.
+     *
+     * @param precos preços dos produtos.
+     * @param quantidades quantidades dos produtos.
+     * @return subtotal do pedido.
+     */
+    public static double calcularSubtotal(double[] precos, int[] quantidades) {
+        double subtotal = 0;
+
+        for (int i = 0; i < precos.length; i++) {
+            subtotal += precos[i] * quantidades[i];
+        }
+
+        return subtotal;
     }
 }
