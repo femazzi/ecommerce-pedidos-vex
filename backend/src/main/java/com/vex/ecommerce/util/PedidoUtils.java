@@ -66,4 +66,26 @@ public final class PedidoUtils {
 
         return String.format("%-20s %3d x R$ %7.2f = R$ %7.2f", produto, quantidade, preco, total);
     }
+
+    /**
+     * Calcula o valor do frete.
+     *
+     * @param peso peso total do pedido.
+     * @param valorPedido valor total do pedido.
+     * @return valor do frete.
+     */
+    public static double calcularFrete(double peso, double valorPedido) {
+        if (peso < 0 || valorPedido < 0) {
+            return 0;
+        }
+
+        if (valorPedido >= VALOR_MINIMO_FRETE_GRATIS) {
+            return 0;
+        }
+
+        double frete = Math.ceil(peso) * FRETE_POR_KG;
+
+        return Math.max(frete, FRETE_MINIMO);
+    }
+
 }
