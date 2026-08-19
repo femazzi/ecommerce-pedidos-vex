@@ -52,4 +52,18 @@ public final class PedidoUtils {
 
         return subtotal;
     }
+
+    /**
+     * Formata uma linha do recibo.
+     *
+     * @param produto nome do produto.
+     * @param quantidade quantidade comprada.
+     * @param preco preço unitário.
+     * @return linha formatada.
+     */
+    public static String formatarLinhaDoRecibo(String produto, int quantidade, double preco) {
+        double total = quantidade * preco;
+
+        return String.format("%-20s %3d x R$ %7.2f = R$ %7.2f", produto, quantidade, preco, total);
+    }
 }
