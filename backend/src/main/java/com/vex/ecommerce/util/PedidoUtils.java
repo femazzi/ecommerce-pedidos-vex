@@ -54,20 +54,6 @@ public final class PedidoUtils {
     }
 
     /**
-     * Formata uma linha do recibo.
-     *
-     * @param produto nome do produto.
-     * @param quantidade quantidade comprada.
-     * @param preco preço unitário.
-     * @return linha formatada.
-     */
-    public static String formatarLinhaDoRecibo(String produto, int quantidade, double preco) {
-        double total = quantidade * preco;
-
-        return String.format("%-20s %3d x R$ %7.2f = R$ %7.2f", produto, quantidade, preco, total);
-    }
-
-    /**
      * Calcula o valor do frete.
      *
      * @param peso peso total do pedido.
@@ -86,6 +72,37 @@ public final class PedidoUtils {
         double frete = Math.ceil(peso) * FRETE_POR_KG;
 
         return Math.max(frete, FRETE_MINIMO);
+    }
+
+
+    /**
+     * Calcula o desconto do pedido.
+     *
+     * @param valorPedido valor do pedido.
+     * @return valor do desconto.
+     */
+    public static double calcularDesconto(double valorPedido) {
+        if (valorPedido < 0) {
+            return 0;
+        }
+
+        double desconto = valorPedido * TAXA_DESCONTO;
+
+        return Math.min(desconto, TETO_DESCONTO);
+    }
+
+    /**
+     * Formata uma linha do recibo.
+     *
+     * @param produto nome do produto.
+     * @param quantidade quantidade comprada.
+     * @param preco preço unitário.
+     * @return linha formatada.
+     */
+    public static String formatarLinhaDoRecibo(String produto, int quantidade, double preco) {
+        double total = quantidade * preco;
+
+        return String.format("%-20s %3d x R$ %7.2f = R$ %7.2f", produto, quantidade, preco, total);
     }
 
 }
