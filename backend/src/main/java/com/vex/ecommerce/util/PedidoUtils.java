@@ -1,0 +1,108 @@
+package com.vex.ecommerce.util;
+
+import java.time.Year;
+import java.util.Random;
+
+public final class PedidoUtils {
+
+    // =========================
+    // CONSTANTES
+    // =========================
+
+    private static final Random RANDOM = new Random();
+
+    private static final String PREFIXO_PEDIDO = "PED";
+    private static final int LIMITE_NUMERO_PEDIDO = 100000;
+
+    private static final double FRETE_POR_KG = 7.50;
+    private static final double FRETE_MINIMO = 12.00;
+    private static final double VALOR_MINIMO_FRETE_GRATIS = 300.00;
+
+    private static final double TAXA_DESCONTO = 0.10;
+    private static final double TETO_DESCONTO = 100.00;
+
+    private PedidoUtils() {
+    }
+
+    /**
+     * Gera um número de pedido no formato PED-AAAA-NNNNN.
+     *
+     * @return número do pedido formatado.
+     */
+    public static String gerarNumeroDoPedido() {
+        int anoAtual = Year.now().getValue();
+        int numeroAleatorio = RANDOM.nextInt(LIMITE_NUMERO_PEDIDO);
+
+        return String.format("%s-%04d-%05d", PREFIXO_PEDIDO, anoAtual, numeroAleatorio);
+    }
+
+    /**
+     * Calcula o subtotal do pedido.
+     *
+     * @param precos preços dos produtos.
+     * @param quantidades quantidades dos produtos.
+     * @return subtotal do pedido.
+     */
+    public static double calcularSubtotal(double[] precos, int[] quantidades) {
+        double subtotal = 0;
+
+        for (int i = 0; i < precos.length; i++) {
+            subtotal += precos[i] * quantidades[i];
+        }
+
+        return subtotal;
+    }
+
+    /**
+     * Calcula o valor do frete.
+     *
+     * @param peso peso total do pedido.
+     * @param valorPedido valor total do pedido.
+     * @return valor do frete.
+     */
+    public static double calcularFrete(double peso, double valorPedido) {
+        if (peso < 0 || valorPedido < 0) {
+            return 0;
+        }
+
+        if (valorPedido >= VALOR_MINIMO_FRETE_GRATIS) {
+            return 0;
+        }
+
+        double frete = Math.ceil(peso) * FRETE_POR_KG;
+
+        return Math.max(frete, FRETE_MINIMO);
+    }
+
+
+    /**
+     * Calcula o desconto do pedido.
+     *
+     * @param valorPedido valor do pedido.
+     * @return valor do desconto.
+     */
+    public static double calcularDesconto(double valorPedido) {
+        if (valorPedido < 0) {
+            return 0;
+        }
+
+        double desconto = valorPedido * TAXA_DESCONTO;
+
+        return Math.min(desconto, TETO_DESCONTO);
+    }
+
+    /**
+     * Formata uma linha do recibo.
+     *
+     * @param produto nome do produto.
+     * @param quantidade quantidade comprada.
+     * @param preco preço unitário.
+     * @return linha formatada.
+     */
+    public static String formatarLinhaDoRecibo(String produto, int quantidade, double preco) {
+        double total = quantidade * preco;
+
+        return String.format("%-20s %3d x R$ %7.2f = R$ %7.2f", produto, quantidade, preco, total);
+    }
+
+}
