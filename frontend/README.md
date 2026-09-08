@@ -186,3 +186,11 @@ Projeto **acadêmico**, desenvolvido para fins educacionais na **Faculdade de Te
 ## Status do Projeto
 
 **Em desenvolvimento — Aula 02**
+
+## Decisões de Modelagem e Regras de Negócio (Aula 04)
+
+- **Preço no ItemPedido:** O `ItemPedido` guarda o `precoPraticado` no momento em que a compra é realizada. Isso garante o registro histórico do valor pago, mesmo que o preço do produto no catálogo venha a ser alterado posteriormente.
+
+- **Imutabilidade de Atributos Chave:** Atributos como `codigo` em `Produtos` e `cpf` em `Clientes` possuem apenas métodos de leitura (`getters`), sem `setters`, impedindo alterações acidentais após a criação do objeto.
+
+- **Endereço do Cliente:** Mantido temporariamente como `String` nesta versão inicial, com previsão de refatoração para uma classe própria nas próximas aulas.
