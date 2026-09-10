@@ -1,48 +1,27 @@
 package com.vex.ecommerce.modelo;
 
 // Representa os dados de quem realiza uma compra no e-commerce.
-public class Cliente {
+public class Cliente extends Pessoa {
 
-    private String nome;
-    private String cpf;
     private String email;
     private String telefone;
     private String endereco;
 
     public Cliente(String nome, String cpf, String email, String telefone, String endereco) {
-        setNome(nome);
-        setCpf(cpf);
+        super(nome, cpf);
         setEmail(email);
         setTelefone(telefone);
         setEndereco(endereco);
     }
 
-    private void setCpf(String cpf) {
-        if (cpf == null || cpf.isBlank()) {
-            throw new IllegalArgumentException("CPF é obrigatório");
-        }
-        this.cpf = cpf.trim();
-    }
-
     // Método de negócio exigido pelo roteiro
+    @Override
     public String getIdentificacao() {
-        return String.format("%s (CPF: %s)", nome, cpf);
-    }
-
-    // Getters e Setters (sem setter para o CPF)
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        if (nome == null || nome.isBlank()) {
-            throw new IllegalArgumentException("Nome do cliente é obrigatório");
-        }
-        this.nome = nome.trim();
+        return String.format("%s (CPF: %s)", getNome(), getDocumento());
     }
 
     public String getCpf() {
-        return cpf;
+        return getDocumento();
     }
 
     public String getEmail() {
