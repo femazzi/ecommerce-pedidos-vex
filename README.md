@@ -227,18 +227,6 @@ As branches seguirão o padrão:
 
 ---
 
-## Licença MIT
-
-Projeto **acadêmico**, desenvolvido para fins educacionais na **Faculdade de Tecnologia SENAI "Antonio Adolpho Lobbe"**.
-
----
-
-## Status do Projeto
-
-**Em desenvolvimento — Aula 06**
-
----
-
 ## Decisões das Aulas 05 e 06
 
 O domínio passou a aplicar encapsulamento com validações nos setters,
@@ -248,11 +236,11 @@ diretamente. A coleção de itens de `Pedido` é exposta como somente leitura.
 
 Foram preservadas as decisões de negócio da equipe Vex:
 
-- Valor por quilo iniciado: R$ 7,50;
-- Frete mínimo: R$ 12,00;
-- Frete grátis a partir de R$ 300,00;
-- Taxa de desconto: 10%;
-- Desconto máximo: R$ 100,00.
+* Valor por quilo iniciado: R$ 7,50;
+* Frete mínimo: R$ 12,00;
+* Frete grátis a partir de R$ 300,00;
+* Taxa de desconto: 10%;
+* Desconto máximo: R$ 100,00.
 
 A migração monetária de `double` para `BigDecimal` alterou cinco arquivos:
 `Produto`, `ItemPedido`, `Pedido`, `PedidoUtils` e `Aplicacao`. Os cálculos
@@ -269,3 +257,15 @@ recusada porque um carrinho não é uma lista. Essa herança também exporia
 operações como `clear()` sem passar pelas regras do domínio. A alternativa
 adotada é composição: uma lista privada de itens, modificada apenas pelos
 métodos de negócio e exposta como coleção somente leitura.
+
+---
+
+## Licença MIT
+
+Projeto **acadêmico**, desenvolvido para fins educacionais na **Faculdade de Tecnologia SENAI "Antonio Adolpho Lobbe"**.
+
+---
+
+## Status do Projeto
+
+**Em desenvolvimento — Aula 06**
