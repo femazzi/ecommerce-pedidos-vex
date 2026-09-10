@@ -3,6 +3,7 @@ package com.vex.ecommerce.modelo;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Pedido {
@@ -64,7 +65,7 @@ public class Pedido {
     }
 
     public List<ItemPedido> getItens() {
-        return itens;
+        return Collections.unmodifiableList(itens);
     }
 
     @Override
