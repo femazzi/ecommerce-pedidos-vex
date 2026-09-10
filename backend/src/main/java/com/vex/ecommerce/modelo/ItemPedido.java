@@ -1,10 +1,12 @@
 package com.vex.ecommerce.modelo;
 
+import java.math.BigDecimal;
+
 public class ItemPedido {
 
     private Produto produto;
     private int quantidade;
-    private double precoPraticado; // Registra o preço no momento da compra
+    private BigDecimal precoPraticado; // Registra o preço no momento da compra
 
     public ItemPedido(Produto produto, int quantidade) {
         setProduto(produto);
@@ -19,8 +21,11 @@ public class ItemPedido {
         this.produto = produto;
     }
 
-    private void setPrecoPraticado(double precoPraticado) {
-        if (precoPraticado < 0) {
+    private void setPrecoPraticado(BigDecimal precoPraticado) {
+        if (precoPraticado == null) {
+            throw new IllegalArgumentException("Preço praticado é obrigatório");
+        }
+        if (precoPraticado.compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException(
                     "Preço praticado não pode ser negativo: " + precoPraticado);
         }
@@ -28,8 +33,8 @@ public class ItemPedido {
     }
 
     // Método de negócio
-    public double calcularSubtotal() {
-        return precoPraticado * quantidade;
+    public BigDecimal calcularSubtotal() {
+        return precoPraticado.multiply(BigDecimal.valueOf(quantidade));
     }
 
     public Produto getProduto() {
@@ -47,7 +52,7 @@ public class ItemPedido {
         this.quantidade = quantidade;
     }
 
-    public double getPrecoPraticado() {
+    public BigDecimal getPrecoPraticado() {
         return precoPraticado;
     }
 

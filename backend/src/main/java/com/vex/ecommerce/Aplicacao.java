@@ -6,14 +6,18 @@ import com.vex.ecommerce.modelo.Pedido;
 import com.vex.ecommerce.modelo.Produto;
 import com.vex.ecommerce.util.PedidoUtils; // Se tiver a classe da Aula 03
 
+import java.math.BigDecimal;
+
 public class Aplicacao {
 
     public static void main(String[] args) {
         System.out.println("=== TESTE DO MODELO DE DOMÍNIO (AULA 04) ===\n");
 
         // 1. Criando produtos
-        Produto teclado = new Produto("TEC-001", "Teclado Mecânico RGB", 150.00, 10);
-        Produto monitor = new Produto("MON-002", "Monitor 24\"", 899.90, 5);
+        Produto teclado = new Produto(
+                "TEC-001", "Teclado Mecânico RGB", new BigDecimal("150.00"), 10);
+        Produto monitor = new Produto(
+                "MON-002", "Monitor 24\"", new BigDecimal("899.90"), 5);
 
         // 2. Criando cliente
         Cliente cliente = new Cliente(

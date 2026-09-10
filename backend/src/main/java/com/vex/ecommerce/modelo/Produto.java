@@ -2,17 +2,19 @@
 
 package com.vex.ecommerce.modelo;
 
+import java.math.BigDecimal;
+
 public class Produto {
 
     private String codigo;
     private String nome;
     private String descricao;
-    private double preco;
+    private BigDecimal preco;
     private int quantidadeEmEstoque;
     private boolean ativo;
 
     // Construtor
-    public Produto(String codigo, String nome, double preco, int quantidadeEmEstoque) {
+    public Produto(String codigo, String nome, BigDecimal preco, int quantidadeEmEstoque) {
         setCodigo(codigo);
         setNome(nome);
         setDescricao(null);
@@ -76,12 +78,15 @@ public class Produto {
         this.descricao = descricao == null ? "" : descricao.trim();
     }
 
-    public double getPreco() {
+    public BigDecimal getPreco() {
         return preco;
     }
 
-    public void setPreco(double preco) {
-        if (preco < 0) {
+    public void setPreco(BigDecimal preco) {
+        if (preco == null) {
+            throw new IllegalArgumentException("Preço é obrigatório");
+        }
+        if (preco.compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException("Preço não pode ser negativo: " + preco);
         }
         this.preco = preco;

@@ -1,5 +1,6 @@
 package com.vex.ecommerce.modelo;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -43,10 +44,10 @@ public class Pedido {
         this.itens.add(item);
     }
 
-    public double calcularValorTotal() {
-        double total = 0.0;
+    public BigDecimal calcularValorTotal() {
+        BigDecimal total = BigDecimal.ZERO;
         for (ItemPedido item : itens) {
-            total += item.calcularSubtotal();
+            total = total.add(item.calcularSubtotal());
         }
         return total;
     }
