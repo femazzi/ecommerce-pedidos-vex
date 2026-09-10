@@ -30,13 +30,26 @@ public class Produto {
 
     // Métodos de negócio
     public boolean temEstoqueDisponivel(int quantidadeDesejada) {
+        if (quantidadeDesejada <= 0) {
+            throw new IllegalArgumentException(
+                    "Quantidade desejada deve ser positiva: " + quantidadeDesejada);
+        }
         return ativo && quantidadeEmEstoque >= quantidadeDesejada;
     }
 
     public void baixarEstoque(int quantidade) {
-        if (temEstoqueDisponivel(quantidade)) {
-            this.quantidadeEmEstoque -= quantidade;
+        if (quantidade <= 0) {
+            throw new IllegalArgumentException("Quantidade deve ser positiva: " + quantidade);
         }
+        if (!ativo) {
+            throw new IllegalStateException("Não é possível baixar estoque de produto inativo");
+        }
+        if (quantidade > quantidadeEmEstoque) {
+            throw new IllegalArgumentException(
+                    "Estoque insuficiente. Disponível: " + quantidadeEmEstoque
+                            + ", solicitado: " + quantidade);
+        }
+        this.quantidadeEmEstoque -= quantidade;
     }
 
     // Getters e Setters (sem setter para o atributo 'codigo')

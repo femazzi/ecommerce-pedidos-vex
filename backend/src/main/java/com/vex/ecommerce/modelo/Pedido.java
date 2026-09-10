@@ -35,12 +35,11 @@ public class Pedido {
 
     // Métodos de negócio
     public void adicionarItem(ItemPedido item) {
-        if (item.getProduto().temEstoqueDisponivel(item.getQuantidade())) {
-            item.getProduto().baixarEstoque(item.getQuantidade());
-            this.itens.add(item);
-        } else {
-            System.out.println("Erro: Estoque insuficiente para o produto " + item.getProduto().getNome());
+        if (item == null) {
+            throw new IllegalArgumentException("Item do pedido é obrigatório");
         }
+        item.getProduto().baixarEstoque(item.getQuantidade());
+        this.itens.add(item);
     }
 
     public double calcularValorTotal() {
