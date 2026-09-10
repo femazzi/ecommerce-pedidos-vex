@@ -41,7 +41,10 @@ public class Produto {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        if (nome == null || nome.isBlank()) {
+            throw new IllegalArgumentException("Nome do produto é obrigatório");
+        }
+        this.nome = nome.trim();
     }
 
     public String getDescricao() {
@@ -49,7 +52,7 @@ public class Produto {
     }
 
     public void setDescricao(String descricao) {
-        this.descricao = descricao;
+        this.descricao = descricao == null ? "" : descricao.trim();
     }
 
     public double getPreco() {
@@ -57,11 +60,22 @@ public class Produto {
     }
 
     public void setPreco(double preco) {
+        if (preco < 0) {
+            throw new IllegalArgumentException("Preço não pode ser negativo: " + preco);
+        }
         this.preco = preco;
     }
 
     public int getQuantidadeEmEstoque() {
         return quantidadeEmEstoque;
+    }
+
+    public void setQuantidadeEmEstoque(int quantidadeEmEstoque) {
+        if (quantidadeEmEstoque < 0) {
+            throw new IllegalArgumentException(
+                    "Estoque não pode ser negativo: " + quantidadeEmEstoque);
+        }
+        this.quantidadeEmEstoque = quantidadeEmEstoque;
     }
 
     public boolean isAtivo() {
