@@ -1,9 +1,7 @@
 package com.vex.ecommerce.modelo;
-// * Essa classe será responsável por criar o modelo de clientes, com seus atributos e métodos.
-// * Cuidando do cadastro, atualização e exclusão de clientes no sistema.
-package com.vex.ecommerce.modelo;
 
-public class Clientes {
+// Representa os dados de quem realiza uma compra no e-commerce.
+public class Cliente {
 
     private String nome;
     private String cpf;
@@ -11,7 +9,7 @@ public class Clientes {
     private String telefone;
     private String endereco;
 
-    public Clientes(String nome, String cpf, String email, String telefone, String endereco) {
+    public Cliente(String nome, String cpf, String email, String telefone, String endereco) {
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;

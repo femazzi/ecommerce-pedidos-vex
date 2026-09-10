@@ -2,7 +2,7 @@
 
 package com.vex.ecommerce.modelo;
 
-public class Produtos {
+public class Produto {
 
     private String codigo;
     private String nome;
@@ -12,7 +12,7 @@ public class Produtos {
     private boolean ativo;
 
     // Construtor
-    public Produtos(String codigo, String nome, double preco, int quantidadeEmEstoque) {
+    public Produto(String codigo, String nome, double preco, int quantidadeEmEstoque) {
         this.codigo = codigo;
         this.nome = nome;
         this.preco = preco;

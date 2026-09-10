@@ -2,11 +2,11 @@ package com.vex.ecommerce.modelo;
 
 public class ItemPedido {
 
-    private Produtos produto;
+    private Produto produto;
     private int quantidade;
     private double precoPraticado; // Registra o preço no momento da compra
 
-    public ItemPedido(Produtos produto, int quantidade) {
+    public ItemPedido(Produto produto, int quantidade) {
         this.produto = produto;
         this.quantidade = quantidade;
         this.precoPraticado = produto.getPreco(); // Congela o preço atual do produto
@@ -17,7 +17,7 @@ public class ItemPedido {
         return precoPraticado * quantidade;
     }
 
-    public Produtos getProduto() {
+    public Produto getProduto() {
         return produto;
     }
 

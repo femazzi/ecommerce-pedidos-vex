@@ -1,9 +1,9 @@
 package com.vex.ecommerce;
 
-import com.vex.ecommerce.modelo.Clientes;
+import com.vex.ecommerce.modelo.Cliente;
 import com.vex.ecommerce.modelo.ItemPedido;
 import com.vex.ecommerce.modelo.Pedido;
-import com.vex.ecommerce.modelo.Produtos;
+import com.vex.ecommerce.modelo.Produto;
 import com.vex.ecommerce.util.PedidoUtils; // Se tiver a classe da Aula 03
 
 public class Aplicacao {
@@ -12,11 +12,11 @@ public class Aplicacao {
         System.out.println("=== TESTE DO MODELO DE DOMÍNIO (AULA 04) ===\n");
 
         // 1. Criando produtos
-        Produtos teclado = new Produtos("TEC-001", "Teclado Mecânico RGB", 150.00, 10);
-        Produtos monitor = new Produtos("MON-002", "Monitor 24\"", 899.90, 5);
+        Produto teclado = new Produto("TEC-001", "Teclado Mecânico RGB", 150.00, 10);
+        Produto monitor = new Produto("MON-002", "Monitor 24\"", 899.90, 5);
 
         // 2. Criando cliente
-        Clientes cliente = new Clientes(
+        Cliente cliente = new Cliente(
                 "Maria Silva", 
                 "123.456.789-00", 
                 "maria@email.com", 

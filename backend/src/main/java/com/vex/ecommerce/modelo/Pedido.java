@@ -8,11 +8,11 @@ import java.util.List;
 public class Pedido {
 
     private String numero;
-    private Clientes cliente;
+    private Cliente cliente;
     private LocalDateTime data;
     private List<ItemPedido> itens;
 
-    public Pedido(String numero, Clientes cliente) {
+    public Pedido(String numero, Cliente cliente) {
         this.numero = numero;
         this.cliente = cliente;
         this.data = LocalDateTime.now();
@@ -42,7 +42,7 @@ public class Pedido {
         return numero;
     }
 
-    public Clientes getCliente() {
+    public Cliente getCliente() {
         return cliente;
     }
 
