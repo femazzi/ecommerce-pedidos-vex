@@ -13,10 +13,24 @@ public class Pedido {
     private List<ItemPedido> itens;
 
     public Pedido(String numero, Cliente cliente) {
-        this.numero = numero;
-        this.cliente = cliente;
+        setNumero(numero);
+        setCliente(cliente);
         this.data = LocalDateTime.now();
         this.itens = new ArrayList<>();
+    }
+
+    private void setNumero(String numero) {
+        if (numero == null || numero.isBlank()) {
+            throw new IllegalArgumentException("Número do pedido é obrigatório");
+        }
+        this.numero = numero.trim();
+    }
+
+    private void setCliente(Cliente cliente) {
+        if (cliente == null) {
+            throw new IllegalArgumentException("Cliente do pedido é obrigatório");
+        }
+        this.cliente = cliente;
     }
 
     // Métodos de negócio

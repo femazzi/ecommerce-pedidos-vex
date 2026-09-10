@@ -10,11 +10,18 @@ public class Cliente {
     private String endereco;
 
     public Cliente(String nome, String cpf, String email, String telefone, String endereco) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.email = email;
-        this.telefone = telefone;
-        this.endereco = endereco;
+        setNome(nome);
+        setCpf(cpf);
+        setEmail(email);
+        setTelefone(telefone);
+        setEndereco(endereco);
+    }
+
+    private void setCpf(String cpf) {
+        if (cpf == null || cpf.isBlank()) {
+            throw new IllegalArgumentException("CPF é obrigatório");
+        }
+        this.cpf = cpf.trim();
     }
 
     // Método de negócio exigido pelo roteiro
@@ -28,7 +35,10 @@ public class Cliente {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        if (nome == null || nome.isBlank()) {
+            throw new IllegalArgumentException("Nome do cliente é obrigatório");
+        }
+        this.nome = nome.trim();
     }
 
     public String getCpf() {
@@ -40,7 +50,10 @@ public class Cliente {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        if (email == null || email.isBlank() || !email.contains("@")) {
+            throw new IllegalArgumentException("E-mail deve ser preenchido e conter @: " + email);
+        }
+        this.email = email.trim();
     }
 
     public String getTelefone() {
@@ -48,7 +61,10 @@ public class Cliente {
     }
 
     public void setTelefone(String telefone) {
-        this.telefone = telefone;
+        if (telefone == null || telefone.isBlank()) {
+            throw new IllegalArgumentException("Telefone é obrigatório");
+        }
+        this.telefone = telefone.trim();
     }
 
     public String getEndereco() {
@@ -56,7 +72,10 @@ public class Cliente {
     }
 
     public void setEndereco(String endereco) {
-        this.endereco = endereco;
+        if (endereco == null || endereco.isBlank()) {
+            throw new IllegalArgumentException("Endereço é obrigatório");
+        }
+        this.endereco = endereco.trim();
     }
 
     @Override

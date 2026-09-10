@@ -13,11 +13,19 @@ public class Produto {
 
     // Construtor
     public Produto(String codigo, String nome, double preco, int quantidadeEmEstoque) {
-        this.codigo = codigo;
-        this.nome = nome;
-        this.preco = preco;
-        this.quantidadeEmEstoque = quantidadeEmEstoque;
+        setCodigo(codigo);
+        setNome(nome);
+        setDescricao(null);
+        setPreco(preco);
+        setQuantidadeEmEstoque(quantidadeEmEstoque);
         this.ativo = true; // Todo produto nasce ativo por regra de negócio
+    }
+
+    private void setCodigo(String codigo) {
+        if (codigo == null || codigo.isBlank()) {
+            throw new IllegalArgumentException("Código do produto é obrigatório");
+        }
+        this.codigo = codigo.trim();
     }
 
     // Métodos de negócio

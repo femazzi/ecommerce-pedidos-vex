@@ -7,9 +7,24 @@ public class ItemPedido {
     private double precoPraticado; // Registra o preço no momento da compra
 
     public ItemPedido(Produto produto, int quantidade) {
+        setProduto(produto);
+        setQuantidade(quantidade);
+        setPrecoPraticado(produto.getPreco()); // Congela o preço atual do produto
+    }
+
+    private void setProduto(Produto produto) {
+        if (produto == null) {
+            throw new IllegalArgumentException("Produto do item é obrigatório");
+        }
         this.produto = produto;
-        this.quantidade = quantidade;
-        this.precoPraticado = produto.getPreco(); // Congela o preço atual do produto
+    }
+
+    private void setPrecoPraticado(double precoPraticado) {
+        if (precoPraticado < 0) {
+            throw new IllegalArgumentException(
+                    "Preço praticado não pode ser negativo: " + precoPraticado);
+        }
+        this.precoPraticado = precoPraticado;
     }
 
     // Método de negócio
@@ -26,6 +41,9 @@ public class ItemPedido {
     }
 
     public void setQuantidade(int quantidade) {
+        if (quantidade <= 0) {
+            throw new IllegalArgumentException("Quantidade do item deve ser positiva: " + quantidade);
+        }
         this.quantidade = quantidade;
     }
 
