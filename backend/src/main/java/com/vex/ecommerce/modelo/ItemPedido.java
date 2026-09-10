@@ -40,7 +40,7 @@ public class ItemPedido {
         return quantidade;
     }
 
-    public void setQuantidade(int quantidade) {
+    private void setQuantidade(int quantidade) {
         if (quantidade <= 0) {
             throw new IllegalArgumentException("Quantidade do item deve ser positiva: " + quantidade);
         }
