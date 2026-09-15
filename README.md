@@ -227,6 +227,39 @@ As branches seguirão o padrão:
 
 ---
 
+## Decisões das Aulas 05 e 06
+
+O domínio passou a aplicar encapsulamento com validações nos setters,
+construtores e métodos que alteram estado. O código do produto, documentos,
+números de pedido e dados internos dos itens não podem ser alterados
+diretamente. A coleção de itens de `Pedido` é exposta como somente leitura.
+
+Foram preservadas as decisões de negócio da equipe Vex:
+
+* Valor por quilo iniciado: R$ 7,50;
+* Frete mínimo: R$ 12,00;
+* Frete grátis a partir de R$ 300,00;
+* Taxa de desconto: 10%;
+* Desconto máximo: R$ 100,00.
+
+A migração monetária de `double` para `BigDecimal` alterou cinco arquivos:
+`Produto`, `ItemPedido`, `Pedido`, `PedidoUtils` e `Aplicacao`. Os cálculos
+passaram a usar `add`, `multiply` e `compareTo`, preservando os resultados
+anteriores.
+
+Foi criada a hierarquia `Pessoa`, com as subclasses `Cliente` e `Funcionario`,
+e a hierarquia de pagamentos composta por `FormaPagamento`, `CartaoCredito`,
+`Boleto` e `Pix`. O processamento é demonstrado por polimorfismo, sem
+condicionais de tipo.
+
+A proposta de fazer `CarrinhoDeCompras` estender `ArrayList<ItemPedido>` foi
+recusada porque um carrinho não é uma lista. Essa herança também exporia
+operações como `clear()` sem passar pelas regras do domínio. A alternativa
+adotada é composição: uma lista privada de itens, modificada apenas pelos
+métodos de negócio e exposta como coleção somente leitura.
+
+---
+
 ## Licença MIT
 
 Projeto **acadêmico**, desenvolvido para fins educacionais na **Faculdade de Tecnologia SENAI "Antonio Adolpho Lobbe"**.
@@ -235,4 +268,4 @@ Projeto **acadêmico**, desenvolvido para fins educacionais na **Faculdade de Te
 
 ## Status do Projeto
 
-**Em desenvolvimento — Aula 02**
+**Em desenvolvimento — Aula 06**
