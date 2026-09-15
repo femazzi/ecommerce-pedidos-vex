@@ -20,6 +20,11 @@ public class Cliente extends Pessoa {
         return String.format("%s (CPF: %s)", getNome(), getDocumento());
     }
 
+    @Override
+    public String getResumo() {
+        return super.getResumo() + " - " + email;
+    }
+
     public String getCpf() {
         return getDocumento();
     }

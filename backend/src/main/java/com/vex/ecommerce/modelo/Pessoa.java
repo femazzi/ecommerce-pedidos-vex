@@ -32,5 +32,9 @@ public abstract class Pessoa {
         this.documento = documento.trim();
     }
 
+    public String getResumo() {
+        return nome + " (" + documento + ")";
+    }
+
     public abstract String getIdentificacao();
 }
