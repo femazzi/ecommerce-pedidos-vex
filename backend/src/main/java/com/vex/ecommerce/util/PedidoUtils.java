@@ -1,5 +1,6 @@
 package com.vex.ecommerce.util;
 
+import java.math.BigDecimal;
 import java.time.Year;
 import java.util.Random;
 
@@ -14,12 +15,12 @@ public final class PedidoUtils {
     private static final String PREFIXO_PEDIDO = "PED";
     private static final int LIMITE_NUMERO_PEDIDO = 100000;
 
-    private static final double FRETE_POR_KG = 7.50;
-    private static final double FRETE_MINIMO = 12.00;
-    private static final double VALOR_MINIMO_FRETE_GRATIS = 300.00;
+    private static final BigDecimal VALOR_POR_QUILO = new BigDecimal("7.50");
+    private static final BigDecimal FRETE_MINIMO = new BigDecimal("12.00");
+    private static final BigDecimal VALOR_FRETE_GRATIS = new BigDecimal("300.00");
 
-    private static final double TAXA_DESCONTO = 0.10;
-    private static final double TETO_DESCONTO = 100.00;
+    private static final BigDecimal TAXA_DESCONTO = new BigDecimal("0.10");
+    private static final BigDecimal DESCONTO_MAXIMO = new BigDecimal("100.00");
 
     private PedidoUtils() {
     }
@@ -43,11 +44,11 @@ public final class PedidoUtils {
      * @param quantidades quantidades dos produtos.
      * @return subtotal do pedido.
      */
-    public static double calcularSubtotal(double[] precos, int[] quantidades) {
-        double subtotal = 0;
+    public static BigDecimal calcularSubtotal(BigDecimal[] precos, int[] quantidades) {
+        BigDecimal subtotal = BigDecimal.ZERO;
 
         for (int i = 0; i < precos.length; i++) {
-            subtotal += precos[i] * quantidades[i];
+            subtotal = subtotal.add(precos[i].multiply(BigDecimal.valueOf(quantidades[i])));
         }
 
         return subtotal;
@@ -60,18 +61,19 @@ public final class PedidoUtils {
      * @param valorPedido valor total do pedido.
      * @return valor do frete.
      */
-    public static double calcularFrete(double peso, double valorPedido) {
-        if (peso < 0 || valorPedido < 0) {
-            return 0;
+    public static BigDecimal calcularFrete(double peso, BigDecimal valorPedido) {
+        if (peso < 0 || valorPedido == null || valorPedido.compareTo(BigDecimal.ZERO) < 0) {
+            return BigDecimal.ZERO;
         }
 
-        if (valorPedido >= VALOR_MINIMO_FRETE_GRATIS) {
-            return 0;
+        if (valorPedido.compareTo(VALOR_FRETE_GRATIS) >= 0) {
+            return BigDecimal.ZERO;
         }
 
-        double frete = Math.ceil(peso) * FRETE_POR_KG;
+        BigDecimal frete = VALOR_POR_QUILO.multiply(
+                BigDecimal.valueOf((long) Math.ceil(peso)));
 
-        return Math.max(frete, FRETE_MINIMO);
+        return frete.max(FRETE_MINIMO);
     }
 
 
@@ -81,14 +83,14 @@ public final class PedidoUtils {
      * @param valorPedido valor do pedido.
      * @return valor do desconto.
      */
-    public static double calcularDesconto(double valorPedido) {
-        if (valorPedido < 0) {
-            return 0;
+    public static BigDecimal calcularDesconto(BigDecimal valorPedido) {
+        if (valorPedido == null || valorPedido.compareTo(BigDecimal.ZERO) < 0) {
+            return BigDecimal.ZERO;
         }
 
-        double desconto = valorPedido * TAXA_DESCONTO;
+        BigDecimal desconto = valorPedido.multiply(TAXA_DESCONTO);
 
-        return Math.min(desconto, TETO_DESCONTO);
+        return desconto.min(DESCONTO_MAXIMO);
     }
 
     /**
@@ -99,8 +101,8 @@ public final class PedidoUtils {
      * @param preco preço unitário.
      * @return linha formatada.
      */
-    public static String formatarLinhaDoRecibo(String produto, int quantidade, double preco) {
-        double total = quantidade * preco;
+    public static String formatarLinhaDoRecibo(String produto, int quantidade, BigDecimal preco) {
+        BigDecimal total = preco.multiply(BigDecimal.valueOf(quantidade));
 
         return String.format("%-20s %3d x R$ %7.2f = R$ %7.2f", produto, quantidade, preco, total);
     }

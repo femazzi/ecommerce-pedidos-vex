@@ -1,38 +1,53 @@
 package com.vex.ecommerce.modelo;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Pedido {
 
     private String numero;
-    private Clientes cliente;
+    private Cliente cliente;
     private LocalDateTime data;
     private List<ItemPedido> itens;
 
-    public Pedido(String numero, Clientes cliente) {
-        this.numero = numero;
-        this.cliente = cliente;
+    public Pedido(String numero, Cliente cliente) {
+        setNumero(numero);
+        setCliente(cliente);
         this.data = LocalDateTime.now();
         this.itens = new ArrayList<>();
     }
 
-    // Métodos de negócio
-    public void adicionarItem(ItemPedido item) {
-        if (item.getProduto().temEstoqueDisponivel(item.getQuantidade())) {
-            item.getProduto().baixarEstoque(item.getQuantidade());
-            this.itens.add(item);
-        } else {
-            System.out.println("Erro: Estoque insuficiente para o produto " + item.getProduto().getNome());
+    private void setNumero(String numero) {
+        if (numero == null || numero.isBlank()) {
+            throw new IllegalArgumentException("Número do pedido é obrigatório");
         }
+        this.numero = numero.trim();
     }
 
-    public double calcularValorTotal() {
-        double total = 0.0;
+    private void setCliente(Cliente cliente) {
+        if (cliente == null) {
+            throw new IllegalArgumentException("Cliente do pedido é obrigatório");
+        }
+        this.cliente = cliente;
+    }
+
+    // Métodos de negócio
+    public void adicionarItem(ItemPedido item) {
+        if (item == null) {
+            throw new IllegalArgumentException("Item do pedido é obrigatório");
+        }
+        item.getProduto().baixarEstoque(item.getQuantidade());
+        this.itens.add(item);
+    }
+
+    public BigDecimal calcularValorTotal() {
+        BigDecimal total = BigDecimal.ZERO;
         for (ItemPedido item : itens) {
-            total += item.calcularSubtotal();
+            total = total.add(item.calcularSubtotal());
         }
         return total;
     }
@@ -42,7 +57,7 @@ public class Pedido {
         return numero;
     }
 
-    public Clientes getCliente() {
+    public Cliente getCliente() {
         return cliente;
     }
 
@@ -51,7 +66,7 @@ public class Pedido {
     }
 
     public List<ItemPedido> getItens() {
-        return itens;
+        return Collections.unmodifiableList(itens);
     }
 
     @Override
